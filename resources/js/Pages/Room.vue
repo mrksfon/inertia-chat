@@ -1,9 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import ChatTextarea from "@/Components/Chat/ChatTextarea.vue";
 defineProps({
     room: Object
 })
+
 </script>
 
 <template>
@@ -26,7 +28,11 @@ defineProps({
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-9">
                     <div class="p-6 text-gray-900">
-                        Messages
+                        <ChatTextarea
+                            class="w-full"
+                            placeholder="Say something..."
+                            v-on:valid="console.log($event)"
+                        />
                     </div>
                 </div>
             </div>

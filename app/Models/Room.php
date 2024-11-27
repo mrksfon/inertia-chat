@@ -10,5 +10,4 @@ class Room extends Model
 {
     /** @use HasFactory<RoomFactory> */
     use HasFactory;
-//    checking github
 }
