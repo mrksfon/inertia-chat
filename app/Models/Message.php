@@ -14,7 +14,7 @@ class Message extends Model
 
     protected $guarded = false;
 
-    public function createdAtHuman()
+    public function createdAtHuman(): string
     {
         $day = match (true) {
             $this->created_at->isToday() => 'Today',
