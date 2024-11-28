@@ -19,11 +19,9 @@ const storeMessage = (payload) => {
 
 const channel = Echo.join(`room.${props.room.id}`)
 
-console.log(channel)
-
 channel
     .listen(`MessageCreated`, (e) => {
-        console.log(e)
+        messagesStore.pushMessage(e)
     })
 
 

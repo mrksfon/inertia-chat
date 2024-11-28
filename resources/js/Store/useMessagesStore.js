@@ -19,6 +19,11 @@ export const useMessagesStore = defineStore('messages', {
             this.fetchState(roomSlug, this.page + 1)
         },
 
+        pushMessage(message) {
+            this.messages.pop()
+            this.messages = [message, ...this.messages]
+        },
+
         storeMessage(roomSlug, payload) {
             axios.post(`/rooms/${roomSlug}/messages`, payload, {
                 headers: {
@@ -26,7 +31,7 @@ export const useMessagesStore = defineStore('messages', {
                 }
             })
                 .then(response => {
-                    this.messages = [response.data, ...this.messages]
+                    this.pushMessage(response.data)
                 })
         }
 
