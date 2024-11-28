@@ -23,6 +23,9 @@ channel
     .listen(`MessageCreated`, (e) => {
         messagesStore.pushMessage(e)
     })
+    .here(users => {
+        console.log(users)
+    })
 
 
 </script>
