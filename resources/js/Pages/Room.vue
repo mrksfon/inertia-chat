@@ -64,6 +64,7 @@ channel
                         <ChatTextarea
                             class="w-full"
                             placeholder="Say something..."
+                            v-on:typing="console.log($event)"
                             v-on:valid="storeMessage({body : $event})"
                         />
                     </div>
