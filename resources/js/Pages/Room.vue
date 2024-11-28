@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import {Head} from '@inertiajs/vue3';
 import ChatTextarea from "@/Components/Chat/ChatTextarea.vue";
 import {useMessagesStore} from "@/Store/useMessagesStore.js";
 import ChatMessages from "@/Components/Chat/ChatMessages.vue";
@@ -13,10 +13,14 @@ const messagesStore = useMessagesStore()
 
 messagesStore.fetchState(props.room.slug)
 
+const storeMessage = (payload) => {
+    messagesStore.storeMessage(props.room.slug, payload)
+}
+
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Dashboard"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -35,11 +39,11 @@ messagesStore.fetchState(props.room.slug)
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-9">
                     <div class="p-6 text-gray-900 space-y-3">
-                        <ChatMessages :room="room" />
+                        <ChatMessages :room="room"/>
                         <ChatTextarea
                             class="w-full"
                             placeholder="Say something..."
-                            v-on:valid="console.log($event)"
+                            v-on:valid="storeMessage({body : $event})"
                         />
                     </div>
                 </div>

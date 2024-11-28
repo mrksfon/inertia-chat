@@ -12,7 +12,9 @@ class Message extends Model
     /** @use HasFactory<MessageFactory> */
     use HasFactory;
 
-    public function user() : BelongsTo
+    protected $guarded = false;
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
