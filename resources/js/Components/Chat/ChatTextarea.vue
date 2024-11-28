@@ -13,7 +13,11 @@ const handleEnter = () => {
     if (model.value.length) {
         emit('valid', model.value)
         model.value = ''
+
+        handleFinishedTyping()
     }
+
+
 }
 
 let typingTimeout = null
@@ -21,11 +25,9 @@ const handleTyping = () => {
     clearTimeout(typingTimeout)
     emit('typing', true)
 
-    typingTimeout = setTimeout(() => {
-        handleFinishTyping()
-    }, 3000)
+    typingTimeout = setTimeout(handleFinishedTyping, 3000)
 }
-const handleFinishTyping = () => {
+const handleFinishedTyping = () => {
     clearTimeout(typingTimeout)
 
     emit('typing', false)
@@ -40,8 +42,8 @@ const handleFinishTyping = () => {
         rows="4"
         v-on:keydown="handleTyping"
         v-on:keyup="shift = false"
-        v-on:keydown.enter.prevent="handleEnter"
         v-on:keydown.shift="shift = true"
+        v-on:keydown.enter.prevent="handleEnter"
 
     />
 </template>
